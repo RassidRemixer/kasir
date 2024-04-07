@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KaryawanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,15 +15,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', function () {
-    return view('admin.Layout.index');
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/admin', function () {
+        return view('admin.Master.index');
+    });
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
-Route::get('/', function () {
-    return view('Guess.index');
+
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', function() { 
+        return view('Login');
+    });
+    Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 });
-Route::get('/Login', function() { 
-    return view('Login');
-});
-Route::get('/Register', function() { 
-    return view('Register');
+
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/register', function() { 
+        return view('Admin.Master.daftarakun');
+    });
+    Route::post('register', [AuthController::class, 'Register'])->name('register');
+    Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
+    Route::get('/karyawan/{id}/edit', [KaryawanController::class, 'edit'])->name('edit.karyawan');
+    Route::delete('/karyawan/{id}', [KaryawanController::class, 'destroy'])->name('delete.karyawan');
 });

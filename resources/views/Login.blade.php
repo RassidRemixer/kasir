@@ -7,6 +7,8 @@
   <title>LOGIN KASIR</title>
   <link rel="shortcut icon" type="image/png" href="{{asset('/assets/images/logos/favicon.png')}}" />
   <link rel="stylesheet" href="{{asset('/assets/css/styles.min.css')}}" />
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+
 </head>
 
 <body>
@@ -22,25 +24,19 @@
               <div class="card-body">
                 <p class="text-center h1">LOGIN</p>
                 <p class="text-center ">Silahkan Login Untuk Mengakses Toko</p>
-                <form>
+                <form action="{{ route('authenticate') }}" method="post">
+                  @csrf
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required autofocus>
                   </div>
                   <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
                   </div>
-                  {{-- <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
-                      <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label text-dark" for="flexCheckChecked">
-                        Remeber this Device
-                      </label>
-                    </div>
-                    <a class="text-primary fw-bold" href="./index.html">Forgot Password ?</a>
-                  </div> --}}
-                  <a href="./index.html" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</a>
+                  <div>
+                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -51,6 +47,30 @@
   </div>
   <script src="{{asset('/assets/libs/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+  @if ($message = Session::get('failed'))
+    <script>
+      // Swal.fire(' {{$message}} ');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Email Atau Password Anda Salah",
+        // footer: '<a href="#">Why do I have this issue?</a>'
+      });
+    </script>
+@endif
+
+@if ($message = Session::get('success'))
+    <script>
+      Swal.fire({
+      title: "Logout Berhasil",
+      text: "Silahkan Login Lagi Untuk Mengakses Kasir",
+      icon: "success"
+    });
+    </script>
+@endif
 </body>
 
 </html>

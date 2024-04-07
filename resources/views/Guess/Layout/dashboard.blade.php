@@ -18,7 +18,7 @@
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="/Login"  class="btn btn-primary">LOGIN</a>
+              {{-- <a href="/Login"  class="btn btn-primary">LOGIN</a> --}}
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -256,7 +256,7 @@
                         </td>
                         <td class="border-bottom-0">
                           <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-secondary rounded-3 fw-semibold">Rp.50.000</span>
+                            <span class="badge bg-primary rounded-3 fw-semibold">Rp.50.000</span>
                           </div>
                         </td>
                       </tr> 
@@ -271,7 +271,7 @@
                         </td>
                         <td class="border-bottom-0">
                           <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-danger rounded-3 fw-semibold">Rp.20.000</span>
+                            <span class="badge bg-primary rounded-3 fw-semibold">Rp.20.000</span>
                           </div>
                         </td>
                       </tr>      
@@ -286,7 +286,7 @@
                         </td>
                         <td class="border-bottom-0">
                           <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-success rounded-3 fw-semibold">Rp.73.000</span>
+                            <span class="badge bg-primary rounded-3 fw-semibold">Rp.73.000</span>
                           </div>
                         </td>
                       </tr>                       
